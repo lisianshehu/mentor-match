@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import SignUp from '../signup-page/signup'
+
 
 class Navbar extends Component {
     state = {  };
@@ -18,24 +22,15 @@ class Navbar extends Component {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item1">
-                    <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Mentees</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Mentors</a>
+                    <Link className="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>                
                     </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <Link className="nav-link" to="#">Login</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign-up</a>
+                    <Link className="nav-link" to={"/signup"}>Sign-up</Link>
                 </li>
 
                 </ul>
