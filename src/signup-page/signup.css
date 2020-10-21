@@ -1,7 +1,20 @@
-.signup-form {
+.signup-page{
+  height: 100vh;
+  background-color: white;
+}
+
+.create-profile
+{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #98fb98;
+}
+
+.card-header
+{
+}
+
+.signup-card
+{
+  padding-top: 10%;
 }
