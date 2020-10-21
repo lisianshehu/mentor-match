@@ -10,8 +10,10 @@
   align-items: center;
 }
 
-.card-header
+.page-title
 {
+  padding-top: 10px;
+
 }
 
 .signup-card
