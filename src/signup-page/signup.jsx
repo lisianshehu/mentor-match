@@ -15,10 +15,13 @@ class SignUp extends Component {
             school: '',
             gradDate: '',
             major: '',
-            password: ''
+            password: '',
+            successSignup: false,
+            invalidUser: false
         }
     }
-   
+    
+  
     jumboStyles =
     {
         backgroundColor: "#eceed2"
@@ -33,11 +36,13 @@ class SignUp extends Component {
             data: this.state
         }).then((response)=>{
             if (response.data.status === 'success'){
-                alert("Message sent");
-                this.resetForm()
+                this.resetForm();
+                this.setState({successSignup: true});
             }
-            else if (response.data.status === 'fail'){
-                alert("Message failed");
+            else {
+                // alert("Message failed");
+                console.log("Failed signup");
+                this.setState({invalidUser: true});
             }
         })
     }
@@ -93,47 +98,31 @@ class SignUp extends Component {
                     <div class="card-body">
                         <h5 class="card-title">SignUp</h5>
                         <div className="signup-form">
-                            <form onSubmit={this.handleSubmit.bind(this)} method="POST">
+                            <form class="needs-validation" onSubmit={this.handleSubmit.bind(this)} method="POST">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputFirstName">First Name</label>
-                                        <input type="text" className="form-control" id="inputFirst" placeholder="First Name" value={this.state.firstName} onChange={this.onFirstNameChange.bind(this)}></input>
+                                        <label for="inputFirst">First Name</label>
+                                        <input type="text" className="form-control" id="inputFirst" placeholder="First Name" value={this.state.firstName} onChange={this.onFirstNameChange.bind(this)} required></input>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="inputLastName">Last Name</label>
-                                        <input type="text" className="form-control" id="inputLast" placeholder="Last Name" value={this.state.lastName} onChange={this.onLastNameChange.bind(this)}></input>
-                                    </div>
-
-                                    
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-5">
-                                        <label for="inputSchool">School</label>
-                                        <input type="text" className="form-control" id="inputSchool" placeholder="School" value={this.state.school} onChange={this.onSchoolChange.bind(this)}></input>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-4">
-                                        <label for="inputMajor">Major</label>
-                                        <input type="text" className="form-control" id="inputMajor" placeholder="Major" value={this.state.major} onChange={this.onMajorChange.bind(this)}></input>
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <label for="inputGradDate">Grad Date</label>
-                                        <input type="text" className="form-control" id="inputGradDate" placeholder="Grad Date" value={this.state.gradDate} onChange={this.onGradDateChange.bind(this)}></input>
+                                        <input type="text" className="form-control" id="inputLast" placeholder="Last Name" value={this.state.lastName} onChange={this.onLastNameChange.bind(this)} required></input>
                                     </div>
                                 </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputUserName">User Name</label>
-                                            <input type="text" className="form-control" id="inputUser" placeholder="User Name" value={this.state.user_name} onChange={this.onUserNameChange.bind(this)}></input>
+                                            <label for="inputUser">User Name</label>
+                                            <input type="text" className="form-control" aria-describedby="userValidationFeedback" id="inputUser" placeholder="User Name" value={this.state.user_name} onChange={this.onUserNameChange.bind(this)} required></input>
+                                            {this.state.invalidUser ? <div class="invalidUser" style={{color:"red"}}>Username already taken!</div> : null}
+                                            
                                         </div>  
 
                                         <div class="form-group form-group col-md-6">
                                             <label for="inputPassword">Password</label>
-                                            <input type="password" className="form-control" id="inputPassword" value={this.state.password} onChange={this.onPasswordChange.bind(this)}></input>
+                                            <input type="password" className="form-control" id="inputPassword" minLength="6" aria-describedby="passwordValidationFeedback" value={this.state.password} onChange={this.onPasswordChange.bind(this)} required></input>
+
                                         </div>
                                     </div>
 
