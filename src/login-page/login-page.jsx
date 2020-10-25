@@ -25,10 +25,12 @@ class Login extends Component{
                 this.resetForm()
             }
             else if (response.data.status === 'failed'){
-                alert("Message failed");
+                alert("Failed login");
+                this.resetForm()
             }
         })
     }
+
 
     resetForm(){
         this.setState({ user_name: '', firstName: '', lastName: '', password: ''})
