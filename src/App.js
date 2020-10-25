@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SignUp from './signup-page/signup';
+import Login from './login-page/login-page';
 import Home from './home/home';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
       <Switch>
         <Route path='/' component={Home} exact></Route>
         <Route path='/signup' component={SignUp}></Route>
+        <Route path='/login' component={Login}></Route>
       </Switch>
     </main>
   );

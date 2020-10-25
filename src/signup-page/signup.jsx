@@ -24,11 +24,6 @@ class SignUp extends Component {
         backgroundColor: "#eceed2"
     };
 
-    cardStyles =
-    {
-        // width: 2000
-    };
-
     handleSubmit(e) {
         e.preventDefault();
 
