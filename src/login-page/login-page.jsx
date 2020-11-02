@@ -8,7 +8,8 @@ class Login extends Component{
         super(props)
         this.state = {
             user_name: '',
-            password: ''
+            password: '',
+            invalidLogin: ''
         }
     }
 
@@ -17,16 +18,16 @@ class Login extends Component{
 
         axios({
             method: "POST",
-            url: "http://127.0.0.1:5000/user/ ",
+            url: "http://127.0.0.1:5000/user/login/",
             data: this.state
         }).then((response)=>{
             if (response.data.status === 'success'){
-                alert("Message sent");
-                this.resetForm()
+                // alert("Login successful");
+                this.resetForm();
             }
             else if (response.data.status === 'failed'){
-                alert("Failed login");
-                this.resetForm()
+                // alert("Failed login");
+                this.setState({invalidLogin: true});
             }
         })
     }
@@ -63,6 +64,8 @@ class Login extends Component{
                                         <label for="inputPassword">Password</label>
                                         <input type="password" className="form-control" id="inputPassword" placeholder="Password" value={this.state.password} onChange={this.onPasswordChange.bind(this)}></input>
                                     </div>
+
+                                    {this.state.invalidLogin ? <div class="invalidLogin" style={{color:"red"}}>Username or password are invalid!</div> : null}
 
                             
                                     <button type="submit" className="btn btn-primary">Login</button>
