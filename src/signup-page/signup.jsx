@@ -29,10 +29,10 @@ class SignUp extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
+        this.setState({invalidUser: false});
         axios({
             method: "POST",
-            url: "http://127.0.0.1:5000/user/ ",
+            url: "http://127.0.0.1:5000/user/signup/",
             data: this.state
         }).then((response)=>{
             if (response.data.status === 'success'){
