@@ -1,0 +1,22 @@
+.signup-page{
+  height: 100vh;
+  background-color: white;
+}
+
+.create-profile
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-title
+{
+  padding-top: 10px;
+
+}
+
+.signup-card
+{
+  padding-top: 10%;
+}
