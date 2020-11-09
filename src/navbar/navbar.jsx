@@ -24,6 +24,9 @@ class Navbar extends Component {
                     <li class="nav-item active">
                     <Link className="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>                
                     </li>
+                    <li class="nav-item active">
+                    <Link className="nav-link" to={"/chatpage"}>Chat page <span class="sr-only">(current)</span></Link>                
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
