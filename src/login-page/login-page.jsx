@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './login-page.css'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
-import ChatPage from '../chat-page/chat-page';
 import Navbar from '../navbar/navbar';
 import { connect } from 'react-redux';
-import { loginReducer } from '../reducer';
 import { login } from '../actions'
 import history from '../history'
 import store from '../store'
@@ -32,10 +29,9 @@ class Login extends Component{
                 alert("Login successful");
                 localStorage.setItem('token', response.data.token)
                 this.setState({loggedIn: true})
-                
+                localStorage.setItem('user', this.state.user_name)
                 console.log(response.data)
-                // this.isLoggedIn();
-                history.push('/')
+                history.push('/chatpage')
             }
             else if (response.data.status === 'failed'){
                 alert("Failed login");
