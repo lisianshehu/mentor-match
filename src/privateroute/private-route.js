@@ -6,7 +6,7 @@ import store from '../store';
 const PrivateRoute = ({ component: Component, loggedIn, path, ...rest }) => {
     return (
         <Route {...rest} render={props => (
-            store.getState().isLoggedIn ?
+            store.getState().loginReducer.isLoggedIn ?
                 <Component {...props} />
             : <Redirect to="/login" />
         )} />

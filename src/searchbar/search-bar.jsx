@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import store from '../store'
-import './search-bar.css'
+import { connect } from 'react-redux';
+import { addUser } from '../actions'
+import './searchbar.css'
 
 
 class Searchbar extends Component {
@@ -10,8 +11,6 @@ class Searchbar extends Component {
         super(props)
         this.state = {  
             inputUsername: '',
-            foundUser: false,
-            userNameFound: ''
         }
     }
 
@@ -25,8 +24,13 @@ class Searchbar extends Component {
             if (response.data.status === 'success'){
                 alert("Search successful");
                 let respUserName = response.data.username
-                this.setState({foundUser:true, userNameFound: respUserName})
+                localStorage.setItem('searchedUser', respUserName)
+                // this.setState({foundUser:true, userNameFound: respUserName})
                 console.log(this.state)
+                const { inputUsername } = this.state
+                console.log({ inputUsername })
+                this.props.addUser({ inputUsername })
+                // console.log(this.props.addUser)
             }
             else if (response.data.status === 'failed') 
             {
@@ -37,28 +41,40 @@ class Searchbar extends Component {
     }
 
     onInputUserNameChange(event){
-        // console.log("setting username")
         this.setState({inputUsername: event.target.value})
-        // console.log(this.state.inputUsername)
     }
-
 
     render() { 
         return ( 
-            <div class="container-sm">
-                <form onSubmit={this.handleSearch.bind(this)} method="POST">
-                    <div class="form-group row">
-                        <div class="col-sm-15">
-                            <input class="form-control" type="text" value={this.state.inputUsername} placeholder="Username" id="username" onChange={this.onInputUserNameChange.bind(this)}></input>
+            <div class="container-fluid">
+                <div className="search-bar">
+                    <form onSubmit={this.handleSearch.bind(this)} method="POST">
+                        <div class="form-group row">
+                            <div class="col-sm-15">
+                                <input class="form-control" type="text" value={this.state.inputUsername} placeholder="Username" id="username" onChange={this.onInputUserNameChange.bind(this)}></input>
+                            </div>
+                            <div class="col-sm-15">
+                                <button type="submit" class="btn btn-primary">Chat</button>
+                            </div>
                         </div>
-                        <div class="col-sm-15">
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         );
     }
 }
+
+// const mapStateToProps = state => {
+//     console.log("in reducer")
+//     return {
+//         addedUser: state.addedUser
+//     };
+// };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addUser: addedUser => dispatch(addUser(addedUser))
+    };
+};
  
-export default Searchbar;
+export default connect(null, mapDispatchToProps)(Searchbar);

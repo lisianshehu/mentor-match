@@ -28,7 +28,7 @@ class Navbar extends Component {
                     <Link className="nav-link" to={"/chatpage"}>Chat page <span class="sr-only">(current)</span></Link>                
                     </li>
                 </ul>
-                {store.getState().isLoggedIn ? 
+                {store.getState().loginReducer.isLoggedIn ? 
                 <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
                     <Avatar src="../public/blank_avatar.jpg"></Avatar>
