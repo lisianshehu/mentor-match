@@ -14,7 +14,6 @@ const ConnectedUserList = ({userList}) =>(
 
 const mapStateToProps = state =>
 {
-    // console.log(state.addUserReducer.userList);
     return { userList: state.addUserReducer.userList };
 };
  
