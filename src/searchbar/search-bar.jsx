@@ -46,30 +46,13 @@ class Searchbar extends Component {
 
     render() { 
         return ( 
-            <div class="container-fluid">
-                <div className="search-bar">
-                    <form onSubmit={this.handleSearch.bind(this)} method="POST">
-                        <div class="form-group row">
-                            <div class="col-sm-15">
-                                <input class="form-control" type="text" value={this.state.inputUsername} placeholder="Username" id="username" onChange={this.onInputUserNameChange.bind(this)}></input>
-                            </div>
-                            <div class="col-sm-15">
-                                <button type="submit" class="btn btn-primary">Chat</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <form className="search-bar" onSubmit={this.handleSearch.bind(this)} method="POST">
+                <input className="input-user" type="text" value={this.state.inputUsername} placeholder="Username" id="username" onChange={this.onInputUserNameChange.bind(this)}></input>
+                <button type="submit" className="search-button" class="btn btn-primary">Chat</button>
+            </form>
         );
     }
 }
-
-// const mapStateToProps = state => {
-//     console.log("in reducer")
-//     return {
-//         addedUser: state.addedUser
-//     };
-// };
 
 const mapDispatchToProps = (dispatch) => {
     return {
