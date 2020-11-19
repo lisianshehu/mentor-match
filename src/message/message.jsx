@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
+import UserList from '../userlist/userlist';
 import './message.css'
 
-class Message extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-        }
-    }
 
+class Message extends Component {
     render () {
-    const fromMeMessage = this.props.fromMe ? 'fromMeMessage' : ''
+    console.log(this.props.fromMe);
+    const fromMe = false;
 
         return (
-            <div className={`fromMeMessage ${fromMeMessage}`}></div>
+            fromMe ? (
+                <div className="message-container justifyEnd">
+                    <div className="message-box backgroundBlue">
+                         <p className="message-text colorWhite">{this.props.message}</p>
+                    </div> 
+                </div> )
+                :
+                (
+                <div className="message-container justifyStart">
+                    <div className="message-box backgroundLight">
+                        <p className="message-text colorDark">{this.props.message}</p>
+                    </div> 
+                </div>
+                ) 
         );
     }
 }
  
-Message.defaultProps = {
-    message: '',
-    username: '',
-    fromMe: false
-  };
+// Message.defaultProps = {
+//     message: '',
+//     username: '',
+//     fromMe: false
+//   };
   
 export default Message;
