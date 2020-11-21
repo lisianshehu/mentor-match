@@ -27,10 +27,13 @@ class ChatInterface extends Component {
     }
 
     render() { 
+        console.log(this.props.showChatInterface);
+
         return (  
             <form className="message-bar" onSubmit={this.handleSend.bind(this)} method="POST">
-                    <input className="input-message" type="text" value={this.state.message} placeholder="Message" id="message" onChange={this.onMessageChange.bind(this)}></input>
-                    <button type="submit" className="send-button">Send</button>
+                    
+                    <input className="input-message" type="text" value={this.state.message} placeholder="Message" id="message" onChange={this.onMessageChange.bind(this)} disabled={!this.props.showChatInterface}></input>
+                    <button disabled={!this.props.showChatInterface} type="submit" className="send-button">Send</button>
             </form>
         );
     }
