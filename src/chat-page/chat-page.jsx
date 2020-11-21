@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 
 import Navbar from '../navbar/navbar'
 import Searchbar from '../searchbar/search-bar'
-import UserList from '../userlist/userlist'
+import ConnectedUserList from '../userlist/userlist'
 import ChatInterface from '../chat-interface/chat-interface'
 import MessageList from '../message-list/message-list'
 
@@ -19,8 +19,10 @@ class ChatPage extends Component {
     super(props)
     this.state = {  
       messages: [],
+      showChatInterface: false
     }
     this.sendHandler = this.sendHandler.bind(this)
+    this.enableChatInterface = this.enableChatInterface.bind(this)
 
     // add socketio server connection
 
@@ -43,6 +45,13 @@ class ChatPage extends Component {
     this.addMessage(messageObject);
   }
 
+  enableChatInterface()
+  {
+    console.log("enable chatting")
+    this.setState({showChatInterface: true})
+    console.log(this.state.showChatInterface)
+  }
+
   addMessage(message)
   {
     console.log("In add message")
@@ -59,11 +68,11 @@ class ChatPage extends Component {
         <div className='chat-page'>
           <Navbar></Navbar>
           <div className='chat-outer-container'>
-            <UserList></UserList>
+            <ConnectedUserList onClick={this.enableChatInterface}></ConnectedUserList>
             <div className="chat-container">
               <Searchbar></Searchbar>   
               <MessageList messages={this.state.messages}></MessageList>
-              <ChatInterface onSend={this.sendHandler}></ChatInterface>
+              <ChatInterface showChatInterface={this.state.showChatInterface} onSend={this.sendHandler}></ChatInterface>
             </div>
           </div>
         </div>
