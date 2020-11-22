@@ -8,7 +8,7 @@ class ConnectedUserList extends Component{
         super(props)
         console.log(this.props)
         this.state = {
-            userList: this.props.userList
+            userList: this.props.userList,
         }
     }
 
@@ -19,15 +19,17 @@ class ConnectedUserList extends Component{
         }
     }
 
-    showUserChat(){
-        this.props.onClick()
+    showUserChat(event){
+        console.log(event.target.value)
+        const user = event.target.value
+        this.props.onClick(user)
     }
 
     render () {
         return (
             <div className="user-list"> 
                 <ul class="list-group">
-                    {this.state.userList.map(user => <button onClick={this.showUserChat.bind(this)} key={user} class="list-group-item list-group-item-action">{user}</button>)}
+                    {this.state.userList.map(user => <button onClick={this.showUserChat.bind(this)} value={user} key={user} class="list-group-item list-group-item-action">{user}</button>)}
                 </ul> 
             </div>
         );
