@@ -9,24 +9,40 @@ import MessageList from '../message-list/message-list'
 
 import './chat-page.css'
 
-const ENDPOINT = 'http://127.0.0.1:5000/api/chat/'
-
-let socket;
-
+let socket
 class ChatPage extends Component {
   constructor(props)
   {
     super(props)
     this.state = {  
       messages: [],
-      showChatInterface: false
+      showChatInterface: false,
+      chat_endpoint: 'http://localhost:5000',
+      userToChatWith: ''
     }
+    
     this.sendHandler = this.sendHandler.bind(this)
     this.enableChatInterface = this.enableChatInterface.bind(this)
+  }
 
-    // add socketio server connection
+  componentDidMount()
+  {
+    console.log("in mount")
+    const { chat_endpoint } = this.state
+    console.log(chat_endpoint)
+    console.log(this.socket)
+    socket = io(chat_endpoint, { transport : ['websocket'] })
+    console.log(socket)
+  }
 
-    // add listening of messages from server 
+
+  componentDidUpdate(prevProps, prevState)
+  {
+    if (prevState.chat_endpoint != this.state.chat_endpoint)
+    {
+      console.log("updating")
+      socket = io(this.state.chat_endpoint)
+    }
   }
 
   sendHandler(message)
@@ -45,11 +61,17 @@ class ChatPage extends Component {
     this.addMessage(messageObject);
   }
 
-  enableChatInterface()
+  enableChatInterface = (userToChatWith) =>
   {
-    console.log("enable chatting")
+    this.setState({userToChatWith: userToChatWith})
     this.setState({showChatInterface: true})
-    console.log(this.state.showChatInterface)
+    this.joinChatRoom(userToChatWith)
+  }
+
+  joinChatRoom(userToChatWith)
+  {
+    console.log(userToChatWith)
+    socket.emit('join', { 'current_user': localStorage.getItem('user'), 'target_user': this.state.userToChatWith})
   }
 
   addMessage(message)
