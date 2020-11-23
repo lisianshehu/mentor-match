@@ -18,6 +18,7 @@ class ChatInterface extends Component {
     {
         e.preventDefault();
         this.props.onSend(this.state.message)
+        this.setState({message: ''})
         console.log("message sent");
     }
 
