@@ -3,34 +3,38 @@ import UserList from '../userlist/userlist';
 import './message.css'
 
 
-class Message extends Component {
-    render () {
-    console.log(this.props.fromMe);
-    const fromMe = false;
+const Message = ({ message, currentUser}) =>{
 
-        return (
-            fromMe ? (
-                <div className="message-container justifyEnd">
-                    <div className="message-box backgroundBlue">
-                         <p className="message-text colorWhite">{this.props.message}</p>
-                    </div> 
-                </div> )
-                :
-                (
-                <div className="message-container justifyStart">
-                    <div className="message-box backgroundLight">
-                        <p className="message-text colorDark">{this.props.message}</p>
-                    </div> 
-                </div>
-                ) 
-        );
+    console.log("in message")
+    console.log(message)
+    let sentFromMe = false
+    let messageText = message.message
+    let user = message.user
+    console.log(messageText)
+    console.log(user)
+    if (currentUser === user)
+    {
+        sentFromMe = true
     }
+
+    return (
+        sentFromMe ? (
+            <div className="message-container justifyEnd">
+                <div className="message-box backgroundBlue">
+                     <p className="message-text colorWhite">{messageText}</p>
+                </div> 
+            </div> )
+            :
+            (
+            <div className="message-container justifyStart">
+                <div className="message-box backgroundLight">
+                    <p className="message-text colorDark">{messageText}</p>
+                </div> 
+            </div>
+            ) 
+    );
+
 }
  
-// Message.defaultProps = {
-//     message: '',
-//     username: '',
-//     fromMe: false
-//   };
-  
+
 export default Message;
