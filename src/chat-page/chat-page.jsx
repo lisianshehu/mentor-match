@@ -21,6 +21,7 @@ class ChatPage extends Component {
       userToChatWith: ''
     }
     
+    this.currentUser = localStorage.getItem('user')
     this.sendHandler = this.sendHandler.bind(this)
     this.enableChatInterface = this.enableChatInterface.bind(this)
   }
@@ -43,22 +44,25 @@ class ChatPage extends Component {
       console.log("updating")
       socket = io(this.state.chat_endpoint)
     }
+
+    if (socket.connected)
+    {
+      console.log("receiving message")
+      socket.on('message', message => {
+        this.setState({messages: [...prevState.messages, message]})
+        console.log(message)
+        console.log(this.state.messages)
+      });
+    }
   }
 
   sendHandler(message)
   {
     console.log("in send handler")
-    const messageObject = {
-      username: localStorage.getItem('user'),
-      message,
-      fromMe: true
-    };
+    console.log(message)
 
-    console.log(messageObject)
-
-    // emit with socket io
-
-    this.addMessage(messageObject);
+    // emit with socket-io
+    socket.emit('send_message', { 'current_user': localStorage.getItem('user'), 'target_user': this.state.userToChatWith, 'message' : message })
   }
 
   enableChatInterface = (userToChatWith) =>
@@ -71,18 +75,20 @@ class ChatPage extends Component {
   joinChatRoom(userToChatWith)
   {
     console.log(userToChatWith)
-    socket.emit('join', { 'current_user': localStorage.getItem('user'), 'target_user': this.state.userToChatWith})
+    console.log(localStorage.getItem('user'))
+    socket.emit('join', { 'current_user': localStorage.getItem('user'), 'target_user': userToChatWith })
   }
 
-  addMessage(message)
-  {
-    console.log("In add message")
-    console.log(message)
-    const messages = this.state.messages;
-    messages.push(message);
-    console.log(messages);
-    this.setState({ messages })
-  }
+  // addMessage(message)
+  // {
+  //   console.log("In add message")
+  //   console.log(message)
+  //   console.log(message.fromMe)
+  //   const messages = this.state.messages;
+  //   messages.push(message);
+  //   // console.log(messages);
+  //   this.setState({ messages: messages })
+  // }
 
 
   render() { 
@@ -93,7 +99,7 @@ class ChatPage extends Component {
             <ConnectedUserList onClick={this.enableChatInterface}></ConnectedUserList>
             <div className="chat-container">
               <Searchbar></Searchbar>   
-              <MessageList messages={this.state.messages}></MessageList>
+              <MessageList messages={this.state.messages} currentUser={this.currentUser}></MessageList>
               <ChatInterface showChatInterface={this.state.showChatInterface} onSend={this.sendHandler}></ChatInterface>
             </div>
           </div>
