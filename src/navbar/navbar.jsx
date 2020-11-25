@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 
+import './navbar.css'
 import store from '../store'
 
 class Navbar extends Component {
@@ -30,6 +31,9 @@ class Navbar extends Component {
                 </ul>
                 {store.getState().loginReducer.isLoggedIn ? 
                 <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" className="username-item">
+                    <h6>{localStorage.getItem('user')}</h6>
+                </li>
                 <li class="nav-item">
                     <Avatar src="../public/blank_avatar.jpg"></Avatar>
                 </li>
