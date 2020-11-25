@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
 
-import SignUp from '../signup-page/signup'
-
+import './navbar.css'
+import store from '../store'
 
 class Navbar extends Component {
     state = {  };
@@ -24,16 +25,31 @@ class Navbar extends Component {
                     <li class="nav-item active">
                     <Link className="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>                
                     </li>
+                    <li class="nav-item active">
+                    <Link className="nav-link" to={"/chatpage"}>Chat page <span class="sr-only">(current)</span></Link>                
+                    </li>
                 </ul>
+                {store.getState().loginReducer.isLoggedIn ? 
+                <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" className="username-item">
+                    <h6>{localStorage.getItem('user')}</h6>
+                </li>
+                <li class="nav-item">
+                    <Avatar src="../public/blank_avatar.jpg"></Avatar>
+                </li>
+                <li class="nav-item">
+                    <Link className="nav-link" to={"/logout"}>Logout</Link>
+                </li>
+                </ul> :
                 <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
+                    <Link className="nav-link" to={"/login"}>Login</Link>
                 </li>
                 <li class="nav-item">
                     <Link className="nav-link" to={"/signup"}>Sign-up</Link>
                 </li>
-
-                </ul>
+                </ul> 
+                }
             </div>
           </nav>
          );
