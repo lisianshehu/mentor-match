@@ -39,9 +39,8 @@ class ChatPage extends Component {
 
   componentDidUpdate(prevProps, prevState)
   {
-    if (prevState.chat_endpoint != this.state.chat_endpoint)
+    if (prevState.chat_endpoint !== this.state.chat_endpoint)
     {
-      console.log("updating")
       socket = io(this.state.chat_endpoint)
     }
 
@@ -58,7 +57,6 @@ class ChatPage extends Component {
 
   sendHandler(message)
   {
-    console.log("in send handler")
     console.log(message)
 
     // emit with socket-io
@@ -78,18 +76,6 @@ class ChatPage extends Component {
     console.log(localStorage.getItem('user'))
     socket.emit('join', { 'current_user': localStorage.getItem('user'), 'target_user': userToChatWith })
   }
-
-  // addMessage(message)
-  // {
-  //   console.log("In add message")
-  //   console.log(message)
-  //   console.log(message.fromMe)
-  //   const messages = this.state.messages;
-  //   messages.push(message);
-  //   // console.log(messages);
-  //   this.setState({ messages: messages })
-  // }
-
 
   render() { 
       return (  
