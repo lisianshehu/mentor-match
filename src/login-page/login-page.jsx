@@ -31,7 +31,7 @@ class Login extends Component{
                 this.setState({loggedIn: true})
                 localStorage.setItem('user', this.state.user_name)
                 console.log(response.data)
-                history.push('/chatpage')
+                history.push('/landing-page')
             }
             else if (response.data.status === 'failed'){
                 alert("Failed login");
