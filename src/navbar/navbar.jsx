@@ -26,7 +26,7 @@ class Navbar extends Component {
                     <Link className="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>                
                     </li>
                     <li class="nav-item active">
-                    <Link className="nav-link" to={"/chatpage"}>Chat page <span class="sr-only">(current)</span></Link>                
+                    <Link className="nav-link" to={"/landing-page"}>Profile<span class="sr-only">(current)</span></Link>                
                     </li>
                 </ul>
                 {store.getState().loginReducer.isLoggedIn ? 
