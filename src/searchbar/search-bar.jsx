@@ -11,6 +11,7 @@ class Searchbar extends Component {
         super(props)
         this.state = {  
             inputUsername: '',
+            loginStatus: false
         }
     }
 
@@ -30,6 +31,14 @@ class Searchbar extends Component {
                 const { inputUsername } = this.state
                 console.log({ inputUsername })
                 this.props.addUser({ inputUsername })
+                if (response.data.loginStatus === true)
+                {
+                    this.setState({loginStatus: true})
+                }
+                else
+                {
+                    this.setState({loginStatus: false})
+                }
                 // console.log(this.props.addUser)
             }
             else if (response.data.status === 'failed') 
@@ -48,7 +57,7 @@ class Searchbar extends Component {
         return ( 
             <form className="search-bar" onSubmit={this.handleSearch.bind(this)} method="POST">
                 <input className="input-user" type="text" value={this.state.inputUsername} placeholder="Username" id="username" onChange={this.onInputUserNameChange.bind(this)}></input>
-                <button type="submit" className="search-button" class="btn btn-primary">Chat</button>
+                <button type="submit" className="search-button" class="btn btn-primary">Search</button>
             </form>
         );
     }
