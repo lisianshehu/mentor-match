@@ -32,9 +32,10 @@ class LandingPage extends Component {
         return (
             <div className='landing-page'>
                 <Navbar></Navbar>
-                <div className='landing-outer-container'>
+                <div className='landing-container'>
                     <Searchbar></Searchbar>
                     <ConnectedUserList onClick={this.enableChatInterface}></ConnectedUserList>
+                    
                 </div>
             </div>
 
