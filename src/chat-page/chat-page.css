@@ -1,7 +1,4 @@
 .chat-page{
-  /* display: flex;
-  flex-direction: row; */
-
   height:100vh;
 }
 
@@ -10,17 +7,17 @@
   justify-content: center;
   align-items: center;
   height:100vh;
-  background-color: aqua;
+  background-color: #ffffff;
 }
 
 .chat-container{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: lightgray;
+  background-color: whitesmoke;
   border-radius: 8px;
-  height: 60%;
-  width: 35%;
+  height: 70%;
+  width: 50%;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
@@ -35,7 +32,7 @@
 }
 
 @media (min-width: 480px) and (max-width: 1200px) {
-  .container {
+  .chat-container {
     width: 60%;
   }
 }
