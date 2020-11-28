@@ -5,9 +5,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css'
-import { createBrowserHistory } from 'history'
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 import history from './history'
 import store from './store'
 
