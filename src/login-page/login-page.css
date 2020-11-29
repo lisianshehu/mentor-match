@@ -1,0 +1,19 @@
+.login-page{
+    height: 100vh;
+    background-color: white;
+  }
+
+.login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container-sm
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

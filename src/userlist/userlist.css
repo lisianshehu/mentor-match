@@ -1,0 +1,20 @@
+.user-list {
+  width: 15vw;
+  height: 10vh;
+  padding: 5px;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .user-list {
+    height: 20vh;
+    width:  100vw;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1200px) {
+  .user-list {
+    height: 20vh;
+    width:  100vw;
+  }
+}
