@@ -17,7 +17,7 @@ class ChatInterface extends Component {
     handleSend(e)
     {
         e.preventDefault();
-        this.props.onSend(this.state.message)
+        this.props.onSend(this.state.message, e)
         this.setState({message: ''})
         console.log("message sent");
     }
@@ -28,8 +28,6 @@ class ChatInterface extends Component {
     }
 
     render() { 
-        console.log(this.props.showChatInterface);
-
         return (  
             <form className="message-bar" onSubmit={this.handleSend.bind(this)} method="POST">
                     

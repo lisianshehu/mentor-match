@@ -7,6 +7,7 @@ import Home from './home/home';
 import PrivateRoute from './privateroute/private-route'
 import ChatPage from './chat-page/chat-page'
 import Logout from './logout/logout'
+import LandingPage from './landing-page/landing-page'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login' component={Login}></Route>
         <Route path='/logout' component={Logout}></Route>
         <PrivateRoute path='/chatpage' component={ChatPage}></PrivateRoute>
+        <PrivateRoute path='/landing-page' component={LandingPage}></PrivateRoute>
       </Switch>
     </main>
   );
