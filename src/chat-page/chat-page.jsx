@@ -33,7 +33,13 @@ class ChatPage extends Component {
     socket = io(chat_endpoint, { transport : ['websocket'] })
     console.log(history.location.state.userToChatWith)
     this.joinChatRoom(history.location.state.userToChatWith)
-    console.log(socket)
+    console.log(socket.connected)
+    console.log("receiving message")
+      socket.on('message', message => {
+        this.setState({messages: [...this.state.messages, message]})
+        console.log(message)
+        console.log(this.state.messages)
+      });
   }
 
 
